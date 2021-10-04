@@ -9,7 +9,7 @@
 ## Information
 
 - Followus on [Twitter](https://twitter.com/CloudNative_Ro)
-- Join our Community [CNCF Community Chapter](https://community.cncf.io/rosenheim)
+- Join our [CNCF Community Chapter](https://community.cncf.io/rosenheim)
 
 ## Meetups
 
