@@ -1,6 +1,6 @@
 # Kubernetes 1.22
 
-<img width="60%" align="right" alt="Meetup Logo" src="https://secure.meetupstatic.com/photos/event/9/6/1/b/clean_497198427.jpeg">
+<img width="50%" align="right" alt="Meetup Logo" src="https://secure.meetupstatic.com/photos/event/9/6/1/b/clean_497198427.jpeg">
 
 ## Description
 
