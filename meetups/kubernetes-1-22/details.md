@@ -22,11 +22,29 @@ Example with Namespace labels:
 # Check if feature gate is activated
 kubectl -n kube-system get pods -o json | jq -r '.items[].spec.containers[].command'
 # Create NS
-kubectl create namespace policy-demo
-# Add Labels
-kubectl label namespaces policy-demo pod-security.kubernetes.io/enforce-version=v1.22 && kubectl label namespaces policy-demo pod-security.kubernetes.io/enforce=restricted
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo-enforce
+  labels:
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: v1.22
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo-audit 
+  labels:
+    pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/audit-version: v1.22
+    pod-security.kubernetes.io/warn: restricted
+    pod-security.kubernetes.io/warn-version: v1.22
+EOF
 # Create privileged pod
-kubectl -n policy-demo apply -f https://raw.githubusercontent.com/BishopFox/badPods/main/manifests/priv/pod/priv-exec-pod.yaml
+kubectl -n demo-enforce apply -f https://raw.githubusercontent.com/BishopFox/badPods/main/manifests/priv/pod/priv-exec-pod.yaml
+# Create privileged pod
+kubectl -n demo-audit apply -f https://raw.githubusercontent.com/BishopFox/badPods/main/manifests/priv/pod/priv-exec-pod.yaml
 ```
 
 Example with AdmissionConfiguration:
