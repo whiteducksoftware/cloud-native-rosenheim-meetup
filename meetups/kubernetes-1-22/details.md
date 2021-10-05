@@ -13,6 +13,7 @@
   * kube-controller-manager
   * kube-scheduler
   * kubelet
+
 ## Pod Security Admission Control
 
 Example with Namespace labels:
