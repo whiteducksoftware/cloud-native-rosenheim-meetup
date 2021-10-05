@@ -1,12 +1,65 @@
 # Kubernetes 1.22 - Details
 
+## Prerequisites
+
+* Kubernetes 1.22
+* containerd >1.5
+* feature gate `PodSecurity` enabled on
+  * kube-api-server
+  * kube-controller-manager
+  * kube-scheduler
+* feature gate `EphemeralContainers` enabled on
+  * kube-api-server
+  * kube-controller-manager
+  * kube-scheduler
+  * kubelet
 ## Pod Security Admission Control
 
-tbd
+Example with Namespace labels:
+
+```bash
+# Create NS
+kubectl create namespace policy-demo
+# Add Labels
+kubectl label namespaces policy-demo pod-security.kubernetes.io/enforce-version=v1.22 && kubectl label namespaces policy-demo pod-security.kubernetes.io/enforce=restricted
+# Create privileged pod
+kubectl -n policy-demo apply -f https://raw.githubusercontent.com/BishopFox/badPods/main/manifests/priv/pod/priv-exec-pod.yaml
+```
+
+Example with AdmissionConfiguration:
+
+```yaml
+apiVersion: apiserver.config.k8s.io/v1
+kind: AdmissionConfiguration
+plugins:
+- name: PodSecurity
+  configuration:
+    apiVersion: pod-security.admission.config.k8s.io/v1alpha1
+    kind: PodSecurityConfiguration
+    # Defaults applied when a mode label is not set.
+    #
+    # Level label values must be one of:
+    # - "privileged" (default)
+    # - "baseline"
+    # - "restricted"
+    #
+    # Version label values must be one of:
+    # - "latest" (default) 
+    # - specific version like "v1.22"
+    defaults:
+      enforce: "privileged"
+      enforce-version: "v1.22"
+    exemptions:
+      # Array of authenticated usernames to exempt.
+      usernames: []
+      # Array of runtime class names to exempt.
+      runtimeClassNames: []
+      # Array of namespaces to exempt.
+      namespaces: [kube-system]
+```
 
 ## Ephemeral Containers
 
-tbd
 
 ## Verify your API versions
 
