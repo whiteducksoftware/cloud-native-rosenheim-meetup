@@ -19,6 +19,8 @@
 Example with Namespace labels:
 
 ```bash
+# Check if feature gate is activated
+kubectl -n kube-system get pods -o json | jq -r '.items[].spec.containers[].command'
 # Create NS
 kubectl create namespace policy-demo
 # Add Labels
