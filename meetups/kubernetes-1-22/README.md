@@ -23,3 +23,8 @@ In addition, Kubernetes 1.22 also removes some commonly used but already depreca
 - Kubernetes 1.22 Release
 - new features – our pick
 - API and feature removals
+
+### Resources
+
+- Our slides are available [here](./kuberentes-1-22.pdf)
+- Code samples and demo details are available [here](./details.md)
