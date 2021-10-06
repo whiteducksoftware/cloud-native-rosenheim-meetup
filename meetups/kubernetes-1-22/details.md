@@ -80,7 +80,14 @@ plugins:
 ```
 
 ## Ephemeral Containers
-
+### Example
+```bash
+# start a pod
+k run demo --image=google/pause --restart=Never -- sleep 1d
+# inject a ephemeral container into the pod
+# the target parameter targets the process namespace of another container
+k debug demo -it --image=busybox --target=demo
+```
 
 ## Verify your API versions
 
