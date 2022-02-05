@@ -14,4 +14,5 @@
 
 ## Meetups
 
-* [Kubernetes 1.22 (October 6, 2021)](meetups/kubernetes-1-22/README.md)
+- [Kubernetes 1.22 (October 6, 2021)](meetups/kubernetes-1-22/README.md)
+- [Kubernetes 1.23 (February 9, 2022)](meetups/kubernetes-1-23/README.md)
