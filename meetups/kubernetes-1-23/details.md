@@ -79,3 +79,31 @@ kubectl alpha events --for pods/nginx-1 -n default --watch
 ## Auto remove PVCs created by StatefulSet
 
 tpd
+
+## gRPC probes
+
+Make sure to enable the corresponding feature gate upfront (don't miss it on the Kubelet!).
+
+```bash
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: grpc-health-probe
+spec:
+  containers:
+  - name: etcd
+    image: k8s.gcr.io/etcd:3.5.1-0
+    command: [ "/usr/local/bin/etcd", "--data-dir",  "/var/lib/etcd", "--listen-client-urls", "http://0.0.0.0:2379", "--advertise-client-urls", "http://127.0.0.1:2379", "--log-level", "debug"]
+    ports:
+    - containerPort: 2379
+    livenessProbe:
+      grpc:
+        port: 2379
+      initialDelaySeconds: 10
+    readinessProbe:
+      grpc:
+        port: 2379
+      initialDelaySeconds: 10
+EOF
+```
