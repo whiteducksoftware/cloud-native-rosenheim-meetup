@@ -82,28 +82,44 @@ tpd
 
 ## gRPC probes
 
-Make sure to enable the corresponding feature gate upfront (don't miss it on the Kubelet!).
+Make sure to enable the corresponding feature gate up-front (don't miss it on the Kubelet!).
 
 ```bash
 cat <<EOF | kubectl apply -f -
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: grpc-health-probe
+  creationTimestamp: null
+  labels:
+    app: grpc-health
+  name: grpc-health
 spec:
-  containers:
-  - name: etcd
-    image: k8s.gcr.io/etcd:3.5.1-0
-    command: [ "/usr/local/bin/etcd", "--data-dir",  "/var/lib/etcd", "--listen-client-urls", "http://0.0.0.0:2379", "--advertise-client-urls", "http://127.0.0.1:2379", "--log-level", "debug"]
-    ports:
-    - containerPort: 2379
-    livenessProbe:
-      grpc:
-        port: 2379
-      initialDelaySeconds: 10
-    readinessProbe:
-      grpc:
-        port: 2379
-      initialDelaySeconds: 10
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpc-health
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: grpc-health
+    spec:
+      containers:
+      - image: ghcr.io/nmeisenzahl/grpc-health/grpc-health:latest
+        imagePullPolicy: Always
+        name: grpc-health
+        ports:
+        - containerPort: 3000
+        resources: {}
+        livenessProbe:
+            grpc:
+                port: 3000
+            initialDelaySeconds: 10
+        readinessProbe:
+            grpc:
+                port: 3000
+            initialDelaySeconds: 10
+status: {}
 EOF
 ```
