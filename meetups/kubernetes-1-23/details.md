@@ -65,14 +65,6 @@ curl -k -X POST -H 'Content-Type: application/json' --data '
 
 ```
 
-## gRPC probe support
-
-tpd
-
-## Auto remove PVCs created by StatefulSet
-
-tpd
-
 ## kubectl events
 
 Currently in alpha and therefore available within the `kubectl alpha` sub-command.
@@ -82,3 +74,8 @@ kubectl alpha events -A
 
 kubectl alpha events --for pods/nginx-1 -n default --watch
 ```
+
+
+## Auto remove PVCs created by StatefulSet
+
+tpd
