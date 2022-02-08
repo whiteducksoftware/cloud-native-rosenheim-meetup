@@ -25,5 +25,5 @@
 
 ### Resources
 
-- Our slides are available [here](./kuberentes-1-23.pdf)
+- Our slides are available [here](./kubernetes-1-23.pdf)
 - Code samples and demo details are available [here](./details.md)
