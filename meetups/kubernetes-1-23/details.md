@@ -78,7 +78,45 @@ kubectl alpha events --for pods/nginx-1 -n default --watch
 
 ## Auto remove PVCs created by StatefulSet
 
-tpd
+```bash
+cat <<EOF | kubectl -n default apply -f -
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: delete
+spec:
+  serviceName: "nginx"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: k8s.gcr.io/nginx-slim:0.8
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: delete
+          mountPath: /usr/share/nginx/html
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Delete
+    whenScaled: Delete
+  volumeClaimTemplates:
+  - metadata:
+      name: delete
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+EOF
+```
 
 ## gRPC probes
 
