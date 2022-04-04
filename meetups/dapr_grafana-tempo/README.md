@@ -8,7 +8,7 @@
 
 ## Speakers
 
-- tbd
+- Dario Brozovic [@dariobro](https://github.com/dariobro), DevOps Engineer, [white duck](https://whiteduck.de/en/)
 - Markus Voit [@m-voit](https://github.com/m-voit), Software and DevOps Engineer, [white duck](https://whiteduck.de/en/)
 - Nico Meisenzahl [@nmeisenzahl](https://github.com/nmeisenzahl), Head of DevOps Consulting & Operations, [white duck](https://whiteduck.de/en/)
 
