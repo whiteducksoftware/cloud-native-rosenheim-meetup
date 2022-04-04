@@ -9,7 +9,7 @@
 ## Speakers
 
 - tbd
-- tbd
+- Markus Voit [@m-voit](https://github.com/m-voit), Software and DevOps Engineer, [white duck](https://whiteduck.de/en/)
 - Nico Meisenzahl [@nmeisenzahl](https://github.com/nmeisenzahl), Head of DevOps Consulting & Operations, [white duck](https://whiteduck.de/en/)
 
 ## Meetup
@@ -26,4 +26,5 @@
 
 ### Resources
 
-- Our slides are available [here](./tbd.pdf) and here [here](./tbd.pdf).
+- Our slides are available [here](./dapr-and-grafana-tempo.pdf)
+- The dapr demo is available [here](https://github.com/whiteducksoftware/dapr-demo)
