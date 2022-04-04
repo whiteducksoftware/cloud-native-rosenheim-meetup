@@ -1,4 +1,4 @@
-# Kubernetes 1.23
+# Dapr und Grafana Tempo
 
 <img width="50%" align="right" alt="Meetup Logo" src="https://secure.meetupstatic.com/photos/event/9/6/1/b/clean_497198427.jpeg">
 
